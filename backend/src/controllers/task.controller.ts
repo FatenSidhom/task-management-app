@@ -40,7 +40,7 @@ class TaskController {
             return res.status(404).send('Task not found');
           }
       
-          res.send('Task deleted successfully');
+          res.send({ message: 'Task deleted successfully' });
         } catch (error) {
           console.log(error);
           res.sendStatus(500);

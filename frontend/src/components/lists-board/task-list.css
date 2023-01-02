@@ -10,6 +10,11 @@ input{
     font-size: 1rem;
     border-radius: 0.2rem;
     background-color: rgb(255, 255, 255);
-    max-width: 100px;
+    max-width: 200px;
+    margin-bottom: 15px;
     display: block;
+}
+h5, button {
+  display: inline-block;
+
 }

@@ -80,20 +80,21 @@ class ListController {
         try {
           // Delete all tasks associated with this list
           await task.deleteMany({ list: req.params.id });
-      
+    
           // Delete the list itself
           const deletedList = await list.findByIdAndDelete(req.params.id);
-      
+    
           if (!deletedList) {
             return res.status(404).send('List not found');
           }
-      
-          res.send('List deleted successfully');
+    
+          res.send({ message: 'List deleted successfully' });
         } catch (error) {
           console.log(error);
           res.sendStatus(500);
         }
       }
+    
       
 }
 

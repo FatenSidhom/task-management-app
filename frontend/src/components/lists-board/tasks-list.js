@@ -8,17 +8,32 @@ const TasksList = List => {
   const [tasks, setTasks] = useState([]);
   const [listName, setListName] = useState(List.list.name); // new state variable to store the new list name
   const [editMode, setEditMode] = useState(false); // new state variable to toggle the visibility of the input field
+  const [taskEditMode, setTaskEditMode] = useState(false); // new state variable to toggle the visibility of the input field
+  const [showForm, setShowForm] = useState(false)
+
+  const initialFormState = { id: null, name: '', note: '' }
+  const [task, setTask] = useState(initialFormState)
+
+
   const handleDeleteClick = async event => {
     event.preventDefault();
     const listId = event.target.dataset.listId;
-    try {
-      const response = await API.lists.deleteList(listId);
-      console.log('Deleted list', response);
-      // Optionally, you can also remove the deleted list from the component's state
-    } catch (error) {
-      console.error(error);
-    }
+
+    API.lists.deleteList(listId).then(() => {
+      window.location.reload();
+    });
+    // Optionally, you can also remove the deleted list from the component's state
+
   };
+
+  const handleDeleteTaskClick = async taskId => {
+    API.tasks.deleteTask(taskId).then(() => {
+      window.location.reload();
+    });
+    // Optionally, you can also remove the deleted list from the component's state
+
+  };
+
   useEffect(() => {
     API.lists.getTasksOfList(List.list._id)
       .then(result => {
@@ -32,6 +47,14 @@ const TasksList = List => {
     API.tasks.createTask(task)
       .then(taskRes => {
         setTasks([...tasks, taskRes])
+      });
+  }
+
+  const editTask = task => {
+    task.list = List.list._id;
+    API.tasks.updateTask(task._id, task)
+      .then(taskRes => {
+        window.location.reload();
       });
   }
 
@@ -62,19 +85,41 @@ const TasksList = List => {
           }}
         />
       ) : (
-          <h5
-            className="list-header"
-            onClick={() => setEditMode(true)}
-          >
-            {listName}
-          </h5>
-        )}
-      <button data-list-id={List.list._id} onClick={handleDeleteClick}>delete
+        <h5
+          className="list-header"
+          onClick={() => setEditMode(true)}
+        >
+          {listName}
+        </h5>
+      )}
+      <button data-list-id={List.list._id} onClick={handleDeleteClick}>X
       </button>
+
       <div className="list-cards">
-        {tasks.map(elm => <TaskCard key={elm._id} name={elm.name} note={elm.note} />)}
+        {tasks.map(elm => <TaskCard
+          key={elm._id}
+          name={elm.name}
+          note={elm.note}
+          elm={elm}
+          showForm={showForm}
+          setShowForm={setShowForm}
+          initialFormState={initialFormState}
+          task={task}
+          setTaskEditMode={setTaskEditMode}
+          handleDeleteTaskClick={handleDeleteTaskClick}
+          setTask={setTask} />)}
       </div>
-      <AddTaskForm addTask={addTask} />
+      <AddTaskForm
+        initialFormState={initialFormState}
+        task={task}
+        setTask={setTask}
+        showForm={showForm}
+        setShowForm={setShowForm}
+        addTask={addTask}
+        editTask={editTask}
+        setTaskEditMode={setTaskEditMode}
+        taskEditMode={taskEditMode}
+      />
     </div>
   )
 }
