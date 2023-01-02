@@ -1,0 +1,73 @@
+
+body {
+  text-align: center;
+  min-height: 100vh;
+  background: #edeef0;
+  font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 1.2rem;
+}
+.logo {
+  max-width: 100px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.title h2{
+  text-align: center;
+  color: #333;
+}
+header {
+  background: #edeef0;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+}
+
+.addList, .addTask{
+  display: flex;
+  align-content: baseline;
+  align-items: center;
+  justify-content: center;
+  max-width: min-content;
+  margin: 0 auto;
+}
+.addList button{
+  min-width: 110px;
+  height: 40px;
+  background:#204485;
+  color: white;
+  border: none;
+  height: 36px;
+}
+.addTask button{
+    min-width: 30px;
+    height: 40px;
+    background:#204485;
+    color: white;
+    border: none;
+    height: 34px;
+}
+
+.addTask .form__input{
+  max-width: 160px;
+}
+
+.form__input {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  font-size: 1rem;
+  margin: 5px auto;
+  padding: 0.5rem 1rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  max-width: 230px;
+  display: block;
+}
+.arrow{
+  background: 'transparent';
+  border: 'none';
+  cursor: 'pointer';
+  outline: 'none';
+}

@@ -1,0 +1,34 @@
+.side-menu {
+    position: fixed;
+    top: 10px;
+    right: 10px; 
+    width: 30%;
+    height: 200px;
+    background-color: white;
+    transition: left 0.3s ease-out;
+    border-radius: 5px;
+	box-shadow: 0 2px 5px 0  rgb(49, 48, 48) ;
+  }
+  
+  .side-menu.open {
+     
+    left: 0; /* set the position of the side menu on screen */
+    
+  }
+  .input-box {
+    display: block;
+    width: 300px;
+    height: 150px;
+    
+    }
+input{
+    border-radius: 5px;
+	box-shadow: 0 2px 5px 0  rgb(49, 48, 48) ;
+}
+p{
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    margin: 10px;
+    font-size: 1rem;
+    text-align: center;
+}
