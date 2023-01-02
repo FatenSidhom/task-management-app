@@ -78,6 +78,10 @@ class ListController {
       
       public async delete(req: Request, res: Response) {
         try {
+          // Delete all tasks associated with this list
+          await task.deleteMany({ list: req.params.id });
+      
+          // Delete the list itself
           const deletedList = await list.findByIdAndDelete(req.params.id);
       
           if (!deletedList) {
@@ -90,6 +94,7 @@ class ListController {
           res.sendStatus(500);
         }
       }
+      
 }
 
 export default new ListController;

@@ -31,7 +31,36 @@ const API = {
         console.log('createList', json)
 
         return json;
-    }
+    },
+    async updateList (listId, updatedList){
+        const ApiResponse = await fetch(`${baseURL}/list/${listId}`, {
+            method: 'PUT', 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedList)}
+        );
+
+        const json = await ApiResponse.json();
+        console.log('updateList', json)
+
+        return json;
+    },
+    async deleteList (listId){
+        const ApiResponse = await fetch(`${baseURL}/list/${listId}`, {
+            method: 'DELETE', 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        });
+      
+        const json = await ApiResponse.json();
+        console.log('deleteList', json)
+      
+        return json;
+      }
   },
   tasks: {
     async createTask (task){
@@ -50,6 +79,35 @@ const API = {
 
         return json;
     },
+    async updateTask (taskId, updatedTask){
+        const ApiResponse = await fetch(`${baseURL}/task/${taskId}`, {
+            method: 'PUT', 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedTask)}
+        );
+
+        const json = await ApiResponse.json();
+        console.log('updateTask', json)
+
+        return json;
+    },
+    async deleteTask (taskId){
+        const ApiResponse = await fetch(`${baseURL}/task/${taskId}`, {
+            method: 'DELETE', 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        });
+
+        const json = await ApiResponse.json();
+        console.log('deleteTask', json)
+
+        return json;
+    }
     }
 };
 
