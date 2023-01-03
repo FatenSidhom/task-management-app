@@ -6,6 +6,7 @@ import './task-list.css';
 
 const TasksList = List => {
   const [tasks, setTasks] = useState([]);
+  const [viewMode, setViewMode] = useState('board');
   const [listName, setListName] = useState(List.list.name); // new state variable to store the new list name
   const [editMode, setEditMode] = useState(false); // new state variable to toggle the visibility of the input field
   const [taskEditMode, setTaskEditMode] = useState(false); // new state variable to toggle the visibility of the input field
@@ -27,13 +28,13 @@ const TasksList = List => {
   };
 
   const handleDeleteTaskClick = async taskId => {
-    API.tasks.deleteTask(taskId).then(() => {
-      window.location.reload();
-    });
-    // Optionally, you can also remove the deleted list from the component's state
-
-  };
-
+    const confirmed = window.confirm('Would you really like to delete the task?');
+    if (confirmed) {
+      API.tasks.deleteTask(taskId).then(() => {
+        window.location.reload();
+      });
+    }
+  }
   useEffect(() => {
     API.lists.getTasksOfList(List.list._id)
       .then(result => {
@@ -70,6 +71,8 @@ const TasksList = List => {
         setEditMode(false); // toggle the visibility of the input field
       });
   }
+ 
+
 
   return (
     <div className="list-wrapper">
@@ -85,31 +88,42 @@ const TasksList = List => {
           }}
         />
       ) : (
-        <h5
+        <h4
           className="list-header"
           onClick={() => setEditMode(true)}
         >
           {listName}
-        </h5>
+        </h4>
       )}
-      <button data-list-id={List.list._id} onClick={handleDeleteClick}>X
+  
+      <img  
+            data-list-id={List.list._id}
+            style={{ width: 20, height: 17, objectFit: "contain", cursor: "pointer" }}
+            onClick={handleDeleteClick}
+            src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png"
+
+          />
+
+     <button className='view' onClick={() => setViewMode(viewMode === 'board' ? 'table' : 'board')}>
+      Toggle view
       </button>
 
-      <div className="list-cards">
-        {tasks.map(elm => <TaskCard
-          key={elm._id}
-          name={elm.name}
-          note={elm.note}
-          elm={elm}
-          showForm={showForm}
-          setShowForm={setShowForm}
-          initialFormState={initialFormState}
-          task={task}
-          setTaskEditMode={setTaskEditMode}
-          handleDeleteTaskClick={handleDeleteTaskClick}
-          setTask={setTask} />)}
-      </div>
-      <AddTaskForm
+      {viewMode === 'board' ? (
+  <div className="list-cards">
+    {tasks.map(elm => <TaskCard
+      key={elm._id}
+      name={elm.name}
+      note={elm.note}
+      elm={elm}
+      showForm={showForm}
+      setShowForm={setShowForm}
+      initialFormState={initialFormState}
+      task={task}
+      setTaskEditMode={setTaskEditMode}
+      handleDeleteTaskClick={handleDeleteTaskClick}
+      setTask={setTask} />)}
+      
+        <AddTaskForm
         initialFormState={initialFormState}
         task={task}
         setTask={setTask}
@@ -120,6 +134,28 @@ const TasksList = List => {
         setTaskEditMode={setTaskEditMode}
         taskEditMode={taskEditMode}
       />
+  </div>
+) : (
+  <table className='task-table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      {tasks.map(elm => (
+        <tr key={elm._id}>
+          <td>{elm.name}</td>
+          <td>{elm.note}</td>
+          
+        </tr>
+      ))}
+    </tbody>
+  </table>
+)}
+        
+    
     </div>
   )
 }

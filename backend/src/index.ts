@@ -13,7 +13,7 @@ app.use(cors());
 
 // Database Setup
 let mongoose = require('mongoose');
-const mongoDB = `mongodb+srv://faten:1234@cluster0.sa2f8.mongodb.net/kanban?retryWrites=true&w=majority`;
+const mongoDB = process.env.MONGO_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.Promise = global.Promise;

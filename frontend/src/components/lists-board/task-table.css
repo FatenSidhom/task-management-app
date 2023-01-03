@@ -1,0 +1,17 @@
+.task-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .task-table th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 5px;
+  }
+  
+  .task-table td {
+    border: 1px solid black;
+    text-align: left;
+    padding: 5px;
+  }
+  

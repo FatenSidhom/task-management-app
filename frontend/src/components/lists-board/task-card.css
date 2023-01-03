@@ -1,0 +1,49 @@
+.list-card-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+p {
+  color: #333;
+  margin: 0.5em 0;
+}
+
+.list-card-details button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-size: 17px;
+  margin-right: 2em;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.list-card-details button:hover {
+  color: #204485;
+}
+
+.list-card-details img {
+  width: 25px;
+  height: 18px;
+  object-fit: contain;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-left :3;
+}
+
+@media (max-width: 600px) {
+  .list-card-details {
+    flex-direction: column;
+  }
+
+  .list-card-details p {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .list-card-details button {
+    margin-left: 0;
+  }
+}

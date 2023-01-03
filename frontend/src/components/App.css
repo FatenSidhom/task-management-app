@@ -5,7 +5,6 @@ body {
   background: #edeef0;
   font-family: 'Roboto', sans-serif;
     color: #333;
-    font-size: 1.2rem;
 }
 .logo {
   max-width: 100px;
@@ -45,8 +44,10 @@ header {
     height: 40px;
     background:#204485;
     color: white;
-    border: none;
     height: 34px;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px 0  rgb(41, 41, 41) ;
+
 }
 
 .addTask .form__input{
@@ -64,10 +65,4 @@ header {
   border: none;
   max-width: 230px;
   display: block;
-}
-.arrow{
-  background: 'transparent';
-  border: 'none';
-  cursor: 'pointer';
-  outline: 'none';
 }
