@@ -9,8 +9,8 @@ Note: it requires yarn or npm installed
 To can run the project you need start frontend and backend as described bellow.
 
 # frontend
-```bash
 To start the project after clone or download:
+```bash
 1. cd frontend
 2. npm install
 3. npm start
@@ -22,4 +22,8 @@ To start the backend project after clone or download:
 1. cd backend
 2. npm install
 3. npm run dev
+```
+Note: Add a .env file with your MONGO_URI to connect to your database, for testing purposes you can use the following
+```bash
+MONGO_URI=mongodb+srv://faten:1234@cluster0.sa2f8.mongodb.net/kanban?retryWrites=true&w=majority
 ```
