@@ -22,6 +22,7 @@ const TaskCard = ({ name, note, setShowForm, showForm, task, setTask, initialFor
               setTask({ ...elm });
             }}
             src="https://cdn-icons-png.flaticon.com/512/32/32355.png"
+            alt='icon'
 
           />
         </div>
@@ -31,6 +32,7 @@ const TaskCard = ({ name, note, setShowForm, showForm, task, setTask, initialFor
             onClick={() => {
               handleDeleteTaskClick(elm._id)
             }}
+            alt='icon'
             src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png"
 
           />

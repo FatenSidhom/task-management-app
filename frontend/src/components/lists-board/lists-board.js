@@ -28,7 +28,7 @@ export default function ListsBoard(){
     }
 
     return (
-        <>  
+        <div>  
             <div className="title">
                 <h2> Create your own Kanban Board</h2>
             </div>
@@ -36,6 +36,6 @@ export default function ListsBoard(){
             <div className="list-cards">
                 {lists.map(list => <TasksList key={list._id} list={list} /> )}
             </div>
-        </>
+        </div>
     )
 }

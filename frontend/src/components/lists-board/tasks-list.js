@@ -23,7 +23,6 @@ const TasksList = List => {
     API.lists.deleteList(listId).then(() => {
       window.location.reload();
     });
-    // Optionally, you can also remove the deleted list from the component's state
 
   };
 
@@ -101,6 +100,7 @@ const TasksList = List => {
             style={{ width: 20, height: 17, objectFit: "contain", cursor: "pointer" }}
             onClick={handleDeleteClick}
             src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png"
+            alt='delete'
 
           />
 
